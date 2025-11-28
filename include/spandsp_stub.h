@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <cstdint>
 
 bool spandsp_start_fax_session();
 bool spandsp_encode_page(const std::vector<uint8_t>& page, std::vector<uint8_t>& outFrames);
