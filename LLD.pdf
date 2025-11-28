@@ -279,7 +279,7 @@ endobj
 endobj
 6 0 obj
 <<
-/Length 5074
+/Length 5085
 >>
 stream
 0.5670000000000001 w
@@ -387,42 +387,42 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 501.7325196850393354 Td
-(- FR1: Simulate SIP call establishment and teardown using a PJSIP stub.) Tj
+(- FR1: Simulate SIP call establishment and teardown using a stubbed PJSIP module.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 484.7246456692913057 Td
-(- FR2: Simulate T.30 fax session management and page encoding using a SpanDSP stub.) Tj
+(- FR2: Manage T.30 fax session and encode page data using a stubbed SpanDSP module.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 467.716771653543276 Td
-(- FR3: Transmit T.38-encapsulated fax data via simulated UDPTL.) Tj
+(- FR3: Transmit T.38-encapsulated fax data via simulated UDPTL transport.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 450.7088976377952463 Td
-(- FR4: Orchestrate the end-to-end FOIP workflow in the Main Application, coordinating between SIP and fax layers.) Tj
+(- FR4: Orchestrate the end-to-end FOIP workflow, coordinating between SIP and fax protocol layers.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 433.7010236220471597 Td
-(- FR5: Accept target phone number \(string\) and sample page data as inputs.) Tj
+(- FR5: Accept target phone number and sample page data as inputs.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 416.69314960629913 Td
-(- FR6: Output boolean status for call, transmission, and hangup, as well as logs to stdout.) Tj
+(- FR6: Output workflow status and logs to console.) Tj
 ET
 BT
 /F1 10 Tf
@@ -506,49 +506,49 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 195.5907874015747439 Td
-(- NFR10: Integration testing via end-to-end workflow in main application.) Tj
+(- NFR10: Integration testing via main application; manual verification via console output.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 178.5829133858267141 Td
-(- NFR11: Protocol compliance is simulated; not validated against real protocol stacks.) Tj
+(- NFR11: Protocol compliance simulated; not validated against real protocol stacks.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 161.5750393700786844 Td
-(- NFR12: Regression testing via manual verification of console output.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 127.559291338582625 Td
+42.5196850393700814 144.5671653543306547 Td
 (System Interfaces:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
+42.5196850393700814 127.559291338582625 Td
+(- Interface1: SIP Signaling Layer \(PJSIP Stub\): Simulated software interface for call setup/teardown and UDPTL) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
 42.5196850393700814 110.5514173228345953 Td
-(- Interface1: Main Application to PJSIP Stub \(simulated SIP signaling and UDPTL transport; direction: Main Application) Tj
+(transport; interacts with Main Application and receives encoded data from Fax Protocol Layer.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 93.5435433070865656 Td
-(!’   P J S I P   S t u b \) .) Tj
+(- Interface2: Fax Protocol Layer \(SpanDSP Stub\): Simulated software interface for T.30 fax session management and) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 76.5356692913385359 Td
-(- Interface2: Main Application to SpanDSP Stub \(simulated T.30 fax session management and page encoding;) Tj
+(page encoding; interacts with Main Application.) Tj
 ET
 endstream
 endobj
@@ -562,7 +562,7 @@ endobj
 endobj
 8 0 obj
 <<
-/Length 4861
+/Length 4502
 >>
 stream
 0.5670000000000001 w
@@ -572,238 +572,224 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 813.5435433070865656 Td
-( d i r e c t i o n :   M a i n   A p p l i c a t i o n  !’   S p a n D S P   S t u b \) .) Tj
+(- Interface3: Main Application: Software interface orchestrating FOIP workflow, coordinating between SIP and fax) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 796.5356692913385359 Td
-(- Interface3: SpanDSP Stub to PJSIP Stub \(encoded fax data passed for UDPTL transmission; direction: SpanDSP) Tj
+(layers.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 779.5277952755905062 Td
-( S t u b  !’   P J S I P   S t u b \) .) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 762.5199212598424765 Td
 (- Interface4: No direct hardware interfaces; all protocol interactions are stubbed and operate in software.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 745.5120472440944468 Td
+42.5196850393700814 762.5199212598424765 Td
 (- Interface5: No physical communication buses \(e.g., UART, SPI, I2C, CAN, Ethernet\); all communication is simulated) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 728.5041732283464171 Td
+42.5196850393700814 745.5120472440944468 Td
 (in software.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 694.4884251968503577 Td
+42.5196850393700814 711.4962992125983874 Td
 (Constraints:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 677.480551181102328 Td
-(- Constraint1: Must run on any platform supporting C++17 and basic POSIX APIs.) Tj
+42.5196850393700814 694.4884251968503577 Td
+(- Constraint1: Must run on platforms supporting C++17 and basic POSIX APIs.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 660.4726771653542983 Td
+42.5196850393700814 677.480551181102328 Td
 ( -   C o n s t r a i n t 2 :   R A M   u s a g e   e x p e c t e d  "d   2 5 6   K B   f o r   d e m o   o p e r a t i o n .) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 643.4648031496062686 Td
+42.5196850393700814 660.4726771653542983 Td
 (- Constraint3: No explicit heap/stack constraints.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 626.4569291338582389 Td
+42.5196850393700814 643.4648031496062686 Td
 (- Constraint4: No real-time or latency guarantees.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
+42.5196850393700814 626.4569291338582389 Td
+(- Constraint5: No explicit power or environmental constraints.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
 42.5196850393700814 609.4490551181102092 Td
-(- Constraint5: Not intended for performance benchmarking.) Tj
+(- Constraint6: Not intended for production use; lacks full security and error recovery.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 592.4411811023621794 Td
-(- Constraint6: No explicit power or environmental constraints; suitable for desktop or embedded development boards.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 575.4333070866141497 Td
 (- Constraint7: No hardware abstraction layer \(HAL\) required.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 558.42543307086612 Td
+42.5196850393700814 575.4333070866141497 Td
 (- Constraint8: IPv4 assumed for any network simulation.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 524.4096850393700606 Td
+42.5196850393700814 541.4175590551180903 Td
 (Data Requirements:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 507.4018110236219741 Td
+42.5196850393700814 524.4096850393700606 Td
 (- DataElement1: Target phone number \(string\).) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 490.3939370078739444 Td
+42.5196850393700814 507.4018110236219741 Td
 (- DataElement2: Sample page data \(raw page data, byte vector\).) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 473.3860629921259147 Td
-(- DataElement3: Encoded fax data \(byte array for transmission\).) Tj
+42.5196850393700814 490.3939370078739444 Td
+(- DataElement3: Encoded fax data \(byte array\).) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 456.378188976377885 Td
+42.5196850393700814 473.3860629921259147 Td
 (- DataElement4: Encoded T.30 frames \(byte vector\).) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 439.3703149606298552 Td
+42.5196850393700814 456.378188976377885 Td
 (- DataElement5: Boolean status for call, transmission, hangup, and session.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 405.3545669291337958 Td
+42.5196850393700814 422.3624409448818255 Td
 (Assumptions:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 388.3466929133857661 Td
-(- A1: Only sender role is implemented \(no fax reception\).) Tj
+42.5196850393700814 405.3545669291337958 Td
+(- A1: Only sender role is implemented; no fax reception.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 371.3388188976377364 Td
+42.5196850393700814 388.3466929133857661 Td
 (- A2: All protocol interactions are simulated; no real network or telephony stack.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
+42.5196850393700814 371.3388188976377364 Td
+(- A3: No hardware abstraction layer required.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
 42.5196850393700814 354.3309448818897067 Td
-(- A3: No hardware abstraction layer \(HAL\) required.) Tj
+(- A4: IPv4 assumed for any network simulation.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 337.323070866141677 Td
-(- A4: IPv4 is assumed for any network simulation.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 303.3073228346455608 Td
+42.5196850393700814 320.3151968503935905 Td
 (Open Questions:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 286.2994488188975311 Td
+42.5196850393700814 303.3073228346455608 Td
 (- Q1: What are the requirements and use cases for receiving faxes and handling multi-page documents?) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
+42.5196850393700814 286.2994488188975311 Td
+(- Q2: What are the specific requirements for SIP authentication and encrypted transport \(TLS/SRTP\) for production or) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
 42.5196850393700814 269.2915748031495013 Td
-(- Q2: What are the specific requirements for SIP authentication and encrypted transport \(TLS/SRTP\) if moving to) Tj
+(field deployment?) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 252.2837007874014716 Td
-(production?) Tj
+(- Q3: Should automated unit and protocol compliance tests be developed for each module?) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 235.2758267716534419 Td
-(- Q3: Should automated unit and protocol compliance tests be implemented, and if so, what are the acceptance) Tj
+(- Q4: Is explicit measurement or enforcement of RAM usage required for production?) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 218.2679527559054122 Td
-(criteria?) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 201.2600787401573825 Td
-(- Q4: Is there a need to profile and document actual RAM usage on intended embedded targets for production use?) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 184.2522047244093528 Td
-(- Q5: Who are the author, date, and reviewers for the metadata section?) Tj
+(- Q5: Who are the author, date, and reviewers/approvers for the final document metadata?) Tj
 ET
 endstream
 endobj
@@ -1306,7 +1292,7 @@ endobj
 endobj
 14 0 obj
 <<
-/Length 5120
+/Length 5371
 >>
 stream
 0.5670000000000001 w
@@ -1344,70 +1330,70 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 725.6695275590550409 Td
-(   - C++17 compliance for all source code.) Tj
+(- Use PlantUML for all UML diagrams \(sequence, class\).) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 708.6616535433070112 Td
-(   - POSIX API usage for platform abstraction.) Tj
+(- Follow organization naming conventions for all classes, methods, and database objects.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 691.6537795275589815 Td
-(   - Modular separation: SIP, Fax, Application logic in distinct modules.) Tj
+(- API specification must be OpenAPI 3.0 YAML compliant.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 674.6459055118109518 Td
-(   - RAII \(Resource Acquisition Is Initialization\) for resource management.) Tj
+(- Database schema must be in PostgreSQL format with explicit datatypes and constraints.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 657.6380314960629221 Td
-(   - RESTful JSON API for external control.) Tj
+(- Modular C++17 design with clear separation of SIP, fax, and application logic.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 640.6301574803148924 Td
-(   - OpenAPI 3.0 for API specification.) Tj
+(- Resource management via RAII principles.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 623.6222834645668627 Td
-(   - PostgreSQL for persistent data modeling \(demo purposes\).) Tj
+(- All protocol interactions are stubbed; no real network or telephony stack.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 606.614409448818833 Td
-(   - PlantUML for UML diagrams.) Tj
+(- No authentication, encryption, or safety-critical features in stub/demo implementation.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 589.6065354330708033 Td
-(   - All protocol interactions simulated; no real network stack.) Tj
+(- Console output for workflow status and logs.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 572.5986614173227736 Td
-(   - IPv4 assumed for any simulated network transport.) Tj
+(- Error handling via boolean return values only.) Tj
 ET
 BT
 /F1 10 Tf
@@ -1421,49 +1407,49 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 521.5750393700786844 Td
-(   - MainApplication: Orchestrates the FOIP workflow and coordinates modules.) Tj
+(- MainApplication: Orchestrates the FOIP workflow, coordinates SIP and fax layers.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 504.5671653543306547 Td
-(   - PJSIPStub: Simulates SIP signaling and UDPTL transport.) Tj
+(- SIPSignalingStub: Simulates SIP call setup, teardown, and UDPTL transport.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 487.559291338582625 Td
-(   - SpanDSPStub: Simulates T.30 fax session management and page encoding.) Tj
+(- FaxProtocolStub: Simulates T.30 fax session management and page encoding.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 470.5514173228345953 Td
-(   - FaxSession: Represents a single fax transmission session.) Tj
+(- UDPTLTransportStub: Simulates T.38-encapsulated fax data transmission.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 453.5435433070865656 Td
-(   - CallStatus: Tracks boolean status for call, transmission, hangup.) Tj
+(- WorkflowLogger: Outputs workflow status and logs to console.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 436.5356692913385359 Td
-(   - LogManager: Outputs logs to stdout.) Tj
+(- InputData: Holds target phone number and sample page data.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 419.5277952755905062 Td
-(   - Config: Holds configuration parameters and constants.) Tj
+(- WorkflowStatus: Tracks boolean status for call, transmission, hangup, and session.) Tj
 ET
 BT
 /F1 10 Tf
@@ -1477,119 +1463,119 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 368.5041732283464171 Td
-(   1. FOIP Transmission Flow:) Tj
+(1. MainApplication receives target phone number and sample page data as input.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 351.4962992125983874 Td
-(      - MainApplication receives target phone number and sample page data.) Tj
+(2. MainApplication invokes SIPSignalingStub to simulate SIP call establishment.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 334.4884251968503008 Td
-(      - MainApplication initiates SIP call via PJSIPStub.) Tj
+(3. On successful call setup, MainApplication invokes FaxProtocolStub to start T.30 fax session.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 317.480551181102328 Td
-(      - Upon call establishment, MainApplication starts fax session via SpanDSPStub.) Tj
+(4. FaxProtocolStub encodes the sample page data into T.30 frames.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 300.4726771653542983 Td
-(      - SpanDSPStub encodes page data into T.30 frames.) Tj
+(5. FaxProtocolStub passes encoded frames to UDPTLTransportStub for T.38 encapsulation and simulated) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 283.4648031496062686 Td
-(      - Encoded fax data is passed to PJSIPStub for UDPTL transmission.) Tj
+(transmission.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 266.4569291338582389 Td
-(      - MainApplication monitors transmission status.) Tj
+(6. UDPTLTransportStub returns transmission status to MainApplication.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 249.4490551181102092 Td
-(      - After transmission, MainApplication tears down SIP call via PJSIPStub.) Tj
+(7. MainApplication instructs SIPSignalingStub to simulate call teardown.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 232.4411811023621794 Td
-(      - MainApplication outputs boolean status and logs to stdout.) Tj
+(8. MainApplication collects all status booleans and logs workflow status via WorkflowLogger.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 215.4333070866141497 Td
-(   2. Error Handling Flow:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 198.4254330708660063 Td
-(      - Each module returns boolean status for success/failure.) Tj
+(9. MainApplication ensures all resources are cleaned up automatically \(RAII\).) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 181.4175590551179766 Td
-(      - On failure, MainApplication logs error and ensures resource cleanup.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 147.4018110236219172 Td
 (4. API Specification \(OpenAPI 3.0 YAML\):) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 130.3939370078738875 Td
-(```yaml) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 113.3860629921258578 Td
+42.5196850393700814 164.4096850393699469 Td
 (openapi: 3.0.0) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 96.3781889763778281 Td
+42.5196850393700814 147.4018110236219172 Td
 (info:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
+42.5196850393700814 130.3939370078738875 Td
+(  title: FOIP Simulation API) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 113.3860629921258578 Td
+(  version: 1.0.0) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 96.3781889763778281 Td
+(paths:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
 42.5196850393700814 79.3703149606297984 Td
-(  title: FOIP Demo API) Tj
+(  /foip/sendFax:) Tj
 ET
 endstream
 endobj
@@ -1603,7 +1589,7 @@ endobj
 endobj
 16 0 obj
 <<
-/Length 4744
+/Length 4659
 >>
 stream
 0.5670000000000001 w
@@ -1613,308 +1599,308 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 813.5435433070865656 Td
-(  version: 1.0.0) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 796.5356692913385359 Td
-(paths:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 779.5277952755905062 Td
-(  /fax/send:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 762.5199212598424765 Td
 (    post:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 745.5120472440944468 Td
-(      summary: Simulate FOIP fax transmission) Tj
+42.5196850393700814 796.5356692913385359 Td
+(      summary: Simulate end-to-end FOIP fax transmission) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 728.5041732283464171 Td
+42.5196850393700814 779.5277952755905062 Td
 (      requestBody:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 711.4962992125983874 Td
+42.5196850393700814 762.5199212598424765 Td
 (        required: true) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 694.4884251968503577 Td
+42.5196850393700814 745.5120472440944468 Td
 (        content:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 677.480551181102328 Td
+42.5196850393700814 728.5041732283464171 Td
 (          application/json:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 660.4726771653542983 Td
+42.5196850393700814 711.4962992125983874 Td
 (            schema:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 643.4648031496062686 Td
-(              type: object) Tj
+42.5196850393700814 694.4884251968503577 Td
+(              $ref: '#/components/schemas/SendFaxRequest') Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 626.4569291338582389 Td
-(              properties:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 609.4490551181102092 Td
-(                phone_number:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 592.4411811023621794 Td
-(                  type: string) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 575.4333070866141497 Td
-(                  description: Target phone number) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 558.42543307086612 Td
-(                page_data:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 541.4175590551180903 Td
-(                  type: string) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 524.4096850393700606 Td
-(                  format: byte) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 507.4018110236219741 Td
-(                  description: Raw page data \(base64-encoded\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 490.3939370078739444 Td
+42.5196850393700814 677.480551181102328 Td
 (      responses:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 473.3860629921259147 Td
+42.5196850393700814 660.4726771653542983 Td
 (        '200':) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 456.378188976377885 Td
-(          description: Transmission result) Tj
+42.5196850393700814 643.4648031496062686 Td
+(          description: Fax transmission simulation completed) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 439.3703149606298552 Td
+42.5196850393700814 626.4569291338582389 Td
 (          content:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 422.3624409448818255 Td
+42.5196850393700814 609.4490551181102092 Td
 (            application/json:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 405.3545669291337958 Td
+42.5196850393700814 592.4411811023621794 Td
 (              schema:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 388.3466929133857661 Td
-(                type: object) Tj
+42.5196850393700814 575.4333070866141497 Td
+(                $ref: '#/components/schemas/SendFaxResponse') Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 371.3388188976377364 Td
-(                properties:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 354.3309448818897067 Td
-(                  call_status:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 337.323070866141677 Td
-(                    type: boolean) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 320.3151968503935905 Td
-(                    description: SIP call establishment status) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 303.3073228346455608 Td
-(                  transmission_status:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 286.2994488188975311 Td
-(                    type: boolean) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 269.2915748031495013 Td
-(                    description: Fax transmission status) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 252.2837007874014716 Td
-(                  hangup_status:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 235.2758267716534419 Td
-(                    type: boolean) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 218.2679527559054122 Td
-(                    description: SIP call teardown status) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 201.2600787401573825 Td
-(                  logs:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 184.2522047244093528 Td
-(                    type: array) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 167.2443307086613231 Td
-(                    items:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 150.2364566929132934 Td
-(                      type: string) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 133.2285826771652637 Td
-(                    description: Workflow logs) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 116.220708661417234 Td
+42.5196850393700814 558.42543307086612 Td
 (        '400':) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
+42.5196850393700814 541.4175590551180903 Td
+(          description: Invalid input data) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 524.4096850393700606 Td
+(          content:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 507.4018110236219741 Td
+(            application/json:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 490.3939370078739444 Td
+(              schema:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 473.3860629921259147 Td
+(                $ref: '#/components/schemas/ErrorResponse') Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 456.378188976377885 Td
+(        '500':) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 439.3703149606298552 Td
+(          description: Internal simulation error) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 422.3624409448818255 Td
+(          content:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 405.3545669291337958 Td
+(            application/json:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 388.3466929133857661 Td
+(              schema:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 371.3388188976377364 Td
+(                $ref: '#/components/schemas/ErrorResponse') Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 354.3309448818897067 Td
+(components:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 337.323070866141677 Td
+(  schemas:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 320.3151968503935905 Td
+(    SendFaxRequest:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 303.3073228346455608 Td
+(      type: object) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 286.2994488188975311 Td
+(      required:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 269.2915748031495013 Td
+(        - targetPhoneNumber) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 252.2837007874014716 Td
+(        - pageData) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(      properties:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 218.2679527559054122 Td
+(        targetPhoneNumber:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 201.2600787401573825 Td
+(          type: string) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 184.2522047244093528 Td
+(          description: Target phone number for fax transmission) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 167.2443307086613231 Td
+(        pageData:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 150.2364566929132934 Td
+(          type: string) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 133.2285826771652637 Td
+(          format: byte) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 116.220708661417234 Td
+(          description: Raw page data \(base64-encoded\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
 42.5196850393700814 99.2128346456692043 Td
-(          description: Invalid input) Tj
+(    SendFaxResponse:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 82.2049606299211746 Td
-(          content:) Tj
+(      type: object) Tj
 ET
 endstream
 endobj
@@ -1928,7 +1914,7 @@ endobj
 endobj
 18 0 obj
 <<
-/Length 4267
+/Length 4685
 >>
 stream
 0.5670000000000001 w
@@ -1938,147 +1924,147 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 813.5435433070865656 Td
-(            application/json:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 796.5356692913385359 Td
-(              schema:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 779.5277952755905062 Td
-(                type: object) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 762.5199212598424765 Td
-(                properties:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 745.5120472440944468 Td
-(                  error:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 728.5041732283464171 Td
-(                    type: string) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 711.4962992125983874 Td
-(        '500':) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 694.4884251968503577 Td
-(          description: Internal error) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 677.480551181102328 Td
-(          content:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 660.4726771653542983 Td
-(            application/json:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 643.4648031496062686 Td
-(              schema:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 626.4569291338582389 Td
-(                type: object) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 609.4490551181102092 Td
-(                properties:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 592.4411811023621794 Td
-(                  error:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 575.4333070866141497 Td
-(                    type: string) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 558.42543307086612 Td
-(components:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 541.4175590551180903 Td
-(  schemas:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 524.4096850393700606 Td
-(    FaxSendRequest:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 507.4018110236219741 Td
-(      type: object) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 490.3939370078739444 Td
 (      properties:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
+42.5196850393700814 796.5356692913385359 Td
+(        callEstablished:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 779.5277952755905062 Td
+(          type: boolean) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 762.5199212598424765 Td
+(        faxSessionStarted:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 745.5120472440944468 Td
+(          type: boolean) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 728.5041732283464171 Td
+(        pageEncoded:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 711.4962992125983874 Td
+(          type: boolean) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 694.4884251968503577 Td
+(        transmissionSuccess:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 677.480551181102328 Td
+(          type: boolean) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(        callTeardown:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 643.4648031496062686 Td
+(          type: boolean) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 626.4569291338582389 Td
+(        logs:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 609.4490551181102092 Td
+(          type: array) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 592.4411811023621794 Td
+(          items:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 575.4333070866141497 Td
+(            type: string) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 558.42543307086612 Td
+(    ErrorResponse:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 541.4175590551180903 Td
+(      type: object) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 524.4096850393700606 Td
+(      properties:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 507.4018110236219741 Td
+(        errorCode:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 490.3939370078739444 Td
+(          type: string) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
 42.5196850393700814 473.3860629921259147 Td
-(        phone_number:) Tj
+(        errorMessage:) Tj
 ET
 BT
 /F1 10 Tf
@@ -2091,148 +2077,141 @@ BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 439.3703149606298552 Td
-(        page_data:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
 42.5196850393700814 422.3624409448818255 Td
-(          type: string) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 405.3545669291337958 Td
-(          format: byte) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 388.3466929133857661 Td
-(    FaxSendResponse:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 371.3388188976377364 Td
-(      type: object) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 354.3309448818897067 Td
-(      properties:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 337.323070866141677 Td
-(        call_status:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 320.3151968503935905 Td
-(          type: boolean) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 303.3073228346455608 Td
-(        transmission_status:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 286.2994488188975311 Td
-(          type: boolean) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 269.2915748031495013 Td
-(        hangup_status:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 252.2837007874014716 Td
-(          type: boolean) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 235.2758267716534419 Td
-(        logs:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 218.2679527559054122 Td
-(          type: array) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 201.2600787401573825 Td
-(          items:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 184.2522047244093528 Td
-(            type: string) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 167.2443307086613231 Td
-(```) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 133.2285826771652637 Td
 (5. Sequence Diagram \(PlantUML\):) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 116.220708661417234 Td
-(```) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 99.2128346456692043 Td
+42.5196850393700814 405.3545669291337958 Td
 (@startuml) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 82.2049606299211746 Td
+42.5196850393700814 388.3466929133857661 Td
 (actor User) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 371.3388188976377364 Td
+(participant MainApplication) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 354.3309448818897067 Td
+(participant SIPSignalingStub) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 337.323070866141677 Td
+(participant FaxProtocolStub) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 320.3151968503935905 Td
+(participant UDPTLTransportStub) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 303.3073228346455608 Td
+(participant WorkflowLogger) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 269.2915748031495013 Td
+(User -> MainApplication: Provide targetPhoneNumber, pageData) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 252.2837007874014716 Td
+(MainApplication -> SIPSignalingStub: establishCall\(targetPhoneNumber\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(SIPSignalingStub --> MainApplication: callEstablished \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 218.2679527559054122 Td
+(MainApplication -> FaxProtocolStub: startFaxSession\(pageData\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 201.2600787401573825 Td
+(FaxProtocolStub --> MainApplication: faxSessionStarted \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 184.2522047244093528 Td
+(FaxProtocolStub -> FaxProtocolStub: encodePageData\(\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 167.2443307086613231 Td
+(FaxProtocolStub --> MainApplication: pageEncoded \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 150.2364566929132934 Td
+(FaxProtocolStub -> UDPTLTransportStub: transmitT38\(encodedFrames\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 133.2285826771652637 Td
+(UDPTLTransportStub --> FaxProtocolStub: transmissionSuccess \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 116.220708661417234 Td
+(FaxProtocolStub --> MainApplication: transmissionSuccess \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 99.2128346456692043 Td
+(MainApplication -> SIPSignalingStub: teardownCall\(\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 82.2049606299211746 Td
+(SIPSignalingStub --> MainApplication: callTeardown \(bool\)) Tj
 ET
 endstream
 endobj
@@ -2246,7 +2225,7 @@ endobj
 endobj
 20 0 obj
 <<
-/Length 4133
+/Length 4471
 >>
 stream
 0.5670000000000001 w
@@ -2256,153 +2235,167 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 813.5435433070865656 Td
-(participant MainApplication) Tj
+(MainApplication -> WorkflowLogger: log\(status, logs\)) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 796.5356692913385359 Td
-(participant PJSIPStub) Tj
+(WorkflowLogger --> MainApplication: logComplete) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 779.5277952755905062 Td
-(participant SpanDSPStub) Tj
+(MainApplication -> User: return status/logs) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 745.5120472440944468 Td
-(User -> MainApplication: Submit phone number, page data) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 728.5041732283464171 Td
-(MainApplication -> PJSIPStub: Establish SIP call) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 711.4962992125983874 Td
-(PJSIPStub --> MainApplication: Call status \(bool\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 694.4884251968503577 Td
-(MainApplication -> SpanDSPStub: Start fax session, encode page) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 677.480551181102328 Td
-(SpanDSPStub --> MainApplication: Encoded fax data, session status \(bool\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 660.4726771653542983 Td
-(SpanDSPStub -> PJSIPStub: Transmit T.38 fax data via UDPTL) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 643.4648031496062686 Td
-(PJSIPStub --> SpanDSPStub: Transmission status \(bool\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 626.4569291338582389 Td
-(MainApplication -> PJSIPStub: Teardown SIP call) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 609.4490551181102092 Td
-(PJSIPStub --> MainApplication: Hangup status \(bool\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 592.4411811023621794 Td
-(MainApplication -> User: Return statuses, logs) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 575.4333070866141497 Td
+42.5196850393700814 762.5199212598424765 Td
 (@enduml) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 558.42543307086612 Td
-(```) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 524.4096850393700606 Td
+42.5196850393700814 728.5041732283464171 Td
 (6. Class Diagram \(PlantUML\):) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 507.4018110236219741 Td
-(```) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 490.3939370078739444 Td
+42.5196850393700814 711.4962992125983874 Td
 (@startuml) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 473.3860629921259147 Td
+42.5196850393700814 694.4884251968503577 Td
 (class MainApplication {) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
+42.5196850393700814 677.480551181102328 Td
+(  +sendFax\(targetPhoneNumber: string, pageData: vector<byte>\): WorkflowStatus) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 643.4648031496062686 Td
+(class SIPSignalingStub {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 626.4569291338582389 Td
+(  +establishCall\(targetPhoneNumber: string\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 609.4490551181102092 Td
+(  +teardownCall\(\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 592.4411811023621794 Td
+(}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 575.4333070866141497 Td
+(class FaxProtocolStub {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 558.42543307086612 Td
+(  +startFaxSession\(pageData: vector<byte>\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 541.4175590551180903 Td
+(  +encodePageData\(pageData: vector<byte>\): vector<byte>) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 524.4096850393700606 Td
+(  +transmitT38\(encodedFrames: vector<byte>\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 507.4018110236219741 Td
+(}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 490.3939370078739444 Td
+(class UDPTLTransportStub {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 473.3860629921259147 Td
+(  +transmitT38\(encodedFrames: vector<byte>\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
 42.5196850393700814 456.378188976377885 Td
-(  +sendFax\(phoneNumber: string, pageData: byte[]\): FaxSendResponse) Tj
+(}) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 439.3703149606298552 Td
-(  +log\(message: string\): void) Tj
+(class WorkflowLogger {) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 422.3624409448818255 Td
+(  +log\(status: WorkflowStatus, logs: vector<string>\): void) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 405.3545669291337958 Td
 (}) Tj
 ET
 BT
@@ -2410,112 +2403,126 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 388.3466929133857661 Td
-(class PJSIPStub {) Tj
+(class InputData {) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 371.3388188976377364 Td
-(  +establishCall\(phoneNumber: string\): bool) Tj
+(  +targetPhoneNumber: string) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 354.3309448818897067 Td
-(  +transmitUDPTL\(data: byte[]\): bool) Tj
+(  +pageData: vector<byte>) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 337.323070866141677 Td
-(  +teardownCall\(\): bool) Tj
+(}) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 320.3151968503935905 Td
-(}) Tj
+(class WorkflowStatus {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 303.3073228346455608 Td
+(  +callEstablished: bool) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 286.2994488188975311 Td
-(class SpanDSPStub {) Tj
+(  +faxSessionStarted: bool) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 269.2915748031495013 Td
-(  +startSession\(pageData: byte[]\): bool) Tj
+(  +pageEncoded: bool) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 252.2837007874014716 Td
-(  +encodePage\(pageData: byte[]\): byte[]) Tj
+(  +transmissionSuccess: bool) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 235.2758267716534419 Td
-(  +getEncodedFaxData\(\): byte[]) Tj
+(  +callTeardown: bool) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 218.2679527559054122 Td
-(}) Tj
+(  +logs: vector<string>) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 184.2522047244093528 Td
-(class FaxSession {) Tj
+42.5196850393700814 201.2600787401573825 Td
+(}) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 167.2443307086613231 Td
-(  +phoneNumber: string) Tj
+(MainApplication --> SIPSignalingStub) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 150.2364566929132934 Td
-(  +pageData: byte[]) Tj
+(MainApplication --> FaxProtocolStub) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 133.2285826771652637 Td
-(  +encodedData: byte[]) Tj
+(FaxProtocolStub --> UDPTLTransportStub) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 116.220708661417234 Td
-(  +status: bool) Tj
+(MainApplication --> WorkflowLogger) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 99.2128346456692043 Td
-(}) Tj
+(MainApplication --> InputData) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 82.2049606299211746 Td
+(MainApplication --> WorkflowStatus) Tj
 ET
 endstream
 endobj
@@ -2529,7 +2536,7 @@ endobj
 endobj
 22 0 obj
 <<
-/Length 3951
+/Length 4073
 >>
 stream
 0.5670000000000001 w
@@ -2539,266 +2546,224 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 813.5435433070865656 Td
-(class CallStatus {) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 796.5356692913385359 Td
-(  +callEstablished: bool) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 779.5277952755905062 Td
-(  +transmissionSuccess: bool) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 762.5199212598424765 Td
-(  +hangupSuccess: bool) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 745.5120472440944468 Td
-(}) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 711.4962992125983874 Td
-(class LogManager {) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 694.4884251968503577 Td
-(  +log\(message: string\): void) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 677.480551181102328 Td
-(}) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 643.4648031496062686 Td
-(class Config {) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 626.4569291338582389 Td
-(  +SIP_TIMEOUT: int) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 609.4490551181102092 Td
-(  +FAX_MAX_PAGE_SIZE: int) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 592.4411811023621794 Td
-(}) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 558.42543307086612 Td
-(MainApplication --> PJSIPStub) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 541.4175590551180903 Td
-(MainApplication --> SpanDSPStub) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 524.4096850393700606 Td
-(MainApplication --> LogManager) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 507.4018110236219741 Td
-(MainApplication --> Config) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 490.3939370078739444 Td
-(MainApplication --> FaxSession) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 473.3860629921259147 Td
-(MainApplication --> CallStatus) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 456.378188976377885 Td
-(SpanDSPStub --> PJSIPStub : <<uses>>) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 439.3703149606298552 Td
 (@enduml) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 422.3624409448818255 Td
-(```) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 388.3466929133857661 Td
+42.5196850393700814 779.5277952755905062 Td
 (7. Database Schema \(PostgreSQL\):) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 354.3309448818897067 Td
-(```sql) Tj
+42.5196850393700814 745.5120472440944468 Td
+(CREATE TABLE foip_workflow_log \() Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 337.323070866141677 Td
-(CREATE TABLE fax_sessions \() Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 320.3151968503935905 Td
+42.5196850393700814 728.5041732283464171 Td
 (    id SERIAL PRIMARY KEY,) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 303.3073228346455608 Td
-(    phone_number VARCHAR\(32\) NOT NULL,) Tj
+42.5196850393700814 711.4962992125983874 Td
+(    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 286.2994488188975311 Td
-(    page_data BYTEA NOT NULL,) Tj
+42.5196850393700814 694.4884251968503577 Td
+(    target_phone_number VARCHAR\(32\) NOT NULL,) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 269.2915748031495013 Td
-(    encoded_data BYTEA,) Tj
+42.5196850393700814 677.480551181102328 Td
+(    call_established BOOLEAN NOT NULL,) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 252.2837007874014716 Td
-(    call_status BOOLEAN NOT NULL,) Tj
+42.5196850393700814 660.4726771653542983 Td
+(    fax_session_started BOOLEAN NOT NULL,) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 235.2758267716534419 Td
-(    transmission_status BOOLEAN NOT NULL,) Tj
+42.5196850393700814 643.4648031496062686 Td
+(    page_encoded BOOLEAN NOT NULL,) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 218.2679527559054122 Td
-(    hangup_status BOOLEAN NOT NULL,) Tj
+42.5196850393700814 626.4569291338582389 Td
+(    transmission_success BOOLEAN NOT NULL,) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 201.2600787401573825 Td
-(    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) Tj
+42.5196850393700814 609.4490551181102092 Td
+(    call_teardown BOOLEAN NOT NULL,) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 184.2522047244093528 Td
+42.5196850393700814 592.4411811023621794 Td
+(    logs TEXT[],) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 575.4333070866141497 Td
+(    status VARCHAR\(16\) NOT NULL CHECK \(status IN \('SUCCESS', 'FAILURE'\)\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 558.42543307086612 Td
 (\);) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 150.2364566929132934 Td
-(CREATE TABLE logs \() Tj
+42.5196850393700814 524.4096850393700606 Td
+(8. Error Handling Strategy:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 133.2285826771652637 Td
-(    id SERIAL PRIMARY KEY,) Tj
+42.5196850393700814 507.4018110236219741 Td
+(- All module APIs return boolean status; false indicates failure at that stage.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 116.220708661417234 Td
-(    fax_session_id INTEGER REFERENCES fax_sessions\(id\) ON DELETE CASCADE,) Tj
+42.5196850393700814 490.3939370078739444 Td
+(- MainApplication aggregates status booleans and logs error context.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 99.2128346456692043 Td
-(    log_message TEXT NOT NULL,) Tj
+42.5196850393700814 473.3860629921259147 Td
+(- API returns errorCode and errorMessage in case of input validation or internal errors.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 82.2049606299211746 Td
-(    log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP) Tj
+42.5196850393700814 456.378188976377885 Td
+(- No exceptions are thrown; all errors are handled via return values and logging.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 439.3703149606298552 Td
+(- Input validation: targetPhoneNumber must be non-empty, pageData must be non-empty.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 422.3624409448818255 Td
+(- Resource cleanup is automatic via RAII; no explicit error recovery for resource leaks.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 405.3545669291337958 Td
+(- No authentication, encryption, or protocol compliance errors are handled in stub.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 371.3388188976377364 Td
+(9. Configuration Parameters:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 354.3309448818897067 Td
+(- Max page data size: 1 MB \(for demo, not enforced in stub\).) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 337.323070866141677 Td
+(- Log output: Console only.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 320.3151968503935905 Td
+(- Supported protocol: T.30 over T.38 \(simulated\).) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 303.3073228346455608 Td
+(- Network simulation: IPv4 only.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 286.2994488188975311 Td
+( -   R A M   u s a g e :  "d   2 5 6   K B   \( e x p e c t e d ,   n o t   e n f o r c e d \) .) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 269.2915748031495013 Td
+(- No authentication or encryption.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 252.2837007874014716 Td
+(- No real-time or latency constraints.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(- No hardware abstraction layer required.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 218.2679527559054122 Td
+(- Demo only; not for production or regulated environments.) Tj
 ET
 endstream
 endobj
@@ -2812,157 +2777,7 @@ endobj
 endobj
 24 0 obj
 <<
-/Length 2547
->>
-stream
-0.5670000000000001 w
-0 G
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 813.5435433070865656 Td
-(\);) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 796.5356692913385359 Td
-(```) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 762.5199212598424765 Td
-(8. Error Handling Strategy:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 745.5120472440944468 Td
-(- Boolean return values for all major operations \(call, transmission, hangup\).) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 728.5041732283464171 Td
-(- Invalid input \(e.g., missing phone number, malformed page data\) returns HTTP 400.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 711.4962992125983874 Td
-(- Internal errors \(e.g., stub failure, resource allocation issues\) return HTTP 500.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 694.4884251968503577 Td
-(- All errors logged to stdout via LogManager.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 677.480551181102328 Td
-(- RAII ensures automatic resource cleanup on error paths.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 660.4726771653542983 Td
-(- No exception propagation beyond module boundaries; errors handled locally.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 626.4569291338582389 Td
-(9. Configuration Parameters:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 609.4490551181102092 Td
-(- SIP_TIMEOUT: 5000 ms \(default call setup/teardown timeout\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 592.4411811023621794 Td
-(- FAX_MAX_PAGE_SIZE: 1 MB \(maximum allowed page data size\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 575.4333070866141497 Td
-(- LOG_LEVEL: "INFO" \(stdout logging verbosity\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 558.42543307086612 Td
-(- UDPTL_SIM_PORT: 4000 \(simulated UDPTL port\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 541.4175590551180903 Td
-(- IPV4_BIND_ADDR: "127.0.0.1" \(simulated network bind address\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 524.4096850393700606 Td
-(- RAM_USAGE_LIMIT: 256 KB \(soft limit for demo operation\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 507.4018110236219741 Td
-(- SESSION_CLEANUP_INTERVAL: 10 seconds \(resource cleanup timer\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 473.3860629921259147 Td
-(This LLD strictly follows the provided requirements and constraints, ensuring modularity, standards compliance, and) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 456.378188976377885 Td
-(deterministic engineering structure.) Tj
-ET
-endstream
-endobj
-25 0 obj
-<</Type /Page
-/Parent 1 0 R
-/Resources 2 0 R
-/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
-/Contents 26 0 R
->>
-endobj
-26 0 obj
-<<
-/Length 2351
+/Length 4005
 >>
 stream
 0.5670000000000001 w
@@ -2979,154 +2794,528 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 788.0317322834645211 Td
-(You receive LLD from Agent 2 in a fixed structure:) Tj
+(You will always receive some text input from Agent 2.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 771.0238582677164914 Td
+(You must never assume the input is missing.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 754.0159842519684616 Td
-(Architecture Standards) Tj
+(You must continue processing it even if:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 737.0081102362204319 Td
+(- the LLD is incomplete) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 720.0002362204724022 Td
-(Entities) Tj
+(- the LLD is missing sections) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 702.9923622047243725 Td
+(- the LLD has formatting issues) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 685.9844881889763428 Td
-(Flows) Tj
+(- the LLD has partial diagrams) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 668.9766141732283131 Td
+(- the LLD only contains some sections) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 651.9687401574802834 Td
-(API Specification) Tj
+(You must never return errors like “No LLD provided” or “file not found.”) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 634.9608661417322537 Td
+( I f   a   s e c t i o n   i s   m i s s i n g  !’   g e n e r a t e   a   r e f i n e d   v e r s i o n   o f   t h a t   s e c t i o n .) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 617.952992125984224 Td
-(Sequence Diagram) Tj
+( I f   a   s e c t i o n   e x i s t s  !’   r e f i n e   a n d   i m p r o v e   i t .) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 583.9372440944881646 Td
-(Class Diagram) Tj
+42.5196850393700814 600.9451181102361943 Td
+(You must always output a complete refined LLD in the fixed format.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 566.9293700787401349 Td
+(You have access to the KnowledgeRAGTool. It is advised to use this tool when you have access to it irrespective of) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 549.9214960629921052 Td
-(Database Schema) Tj
+(whether a knowledge retrieval task has been assigned explicitly.) Tj
+ET
+BT
+/F1 14 Tf
+16.0999999999999979 TL
+0 g
+28.3464566929133888 530.0789763779526993 Td
+(Expected Output:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 515.9057480314959321 Td
-(Error Handling Strategy) Tj
+42.5196850393700814 504.5671653543306547 Td
+(Must follow exactly:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 481.8899999999999295 Td
-(Configuration Parameters) Tj
+42.5196850393700814 487.559291338582625 Td
+(1. Architecture Standards:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 447.8742519685038701 Td
-(Your job is to:) Tj
+42.5196850393700814 470.5514173228345953 Td
+(   - …) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 413.8585039370078107 Td
-(Detect missing sections) Tj
+42.5196850393700814 436.5356692913385359 Td
+(2. Entities:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 379.8427559055117513 Td
-(Fix formatting) Tj
+42.5196850393700814 419.5277952755905062 Td
+(   - …) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 345.8270078740156919 Td
-(Improve clarity) Tj
+42.5196850393700814 385.5120472440944468 Td
+(3. Flows:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 311.8112598425195756 Td
-(Normalize naming conventions) Tj
+42.5196850393700814 368.5041732283464171 Td
+(   1. …) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 277.7955118110235162 Td
-(Improve class names and method names \(without altering meaning\)) Tj
+42.5196850393700814 351.4962992125983874 Td
+(   2. …) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 243.7797637795274568 Td
-(Make diagrams consistent) Tj
+42.5196850393700814 317.480551181102328 Td
+(4. API Specification \(OpenAPI 3.0 YAML\):) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 209.7640157480313974 Td
-(Ensure database schema is valid PostgreSQL) Tj
+42.5196850393700814 300.4726771653542983 Td
+(   …) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 175.748267716535338 Td
-(Ensure OpenAPI is valid) Tj
+42.5196850393700814 266.4569291338582389 Td
+(5. Sequence Diagram \(PlantUML\):) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 141.7325196850392786 Td
-(Fix indents, syntax, PlantUML formatting) Tj
+42.5196850393700814 249.4490551181102092 Td
+(   @startuml) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 107.7167716535432191 Td
-(Remove noise) Tj
+42.5196850393700814 232.4411811023621794 Td
+(   …) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 73.7010236220471597 Td
-(Improve quality) Tj
+42.5196850393700814 215.4333070866141497 Td
+(   @enduml) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 181.4175590551179766 Td
+(6. Class Diagram \(PlantUML\):) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 164.4096850393699469 Td
+(   @startuml) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 147.4018110236219172 Td
+(   …) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 130.3939370078738875 Td
+(   @enduml) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 96.3781889763778281 Td
+(7. Database Schema \(PostgreSQL\):) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 79.3703149606297984 Td
+(   …) Tj
+ET
+endstream
+endobj
+25 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 26 0 R
+>>
+endobj
+26 0 obj
+<<
+/Length 4962
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 796.5356692913385359 Td
+(8. Error Handling Strategy:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 779.5277952755905062 Td
+(   …) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 745.5120472440944468 Td
+(9. Configuration Parameters:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 728.5041732283464171 Td
+(   …) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 694.4884251968503577 Td
+(RULES:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 677.480551181102328 Td
+(- Never output errors.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(- Never ask for files or directories.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 643.4648031496062686 Td
+(- Never say “No LLD provided.”) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 626.4569291338582389 Td
+(- Never return markdown formatting.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 609.4490551181102092 Td
+( -   I f   t h e   i n p u t   L L D   i s   i n c o m p l e t e  !’   f i l l   m i s s i n g   p a r t s   b a s e d   o n   a r c h i t e c t u r a l   l o g i c .) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 592.4411811023621794 Td
+( -   I f   t h e   i n p u t   L L D   i s   p r e s e n t  !’   r e f i n e   i t .) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 575.4333070866141497 Td
+(- Maintain PlantUML syntax exactly.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 558.42543307086612 Td
+(- Maintain OpenAPI 3.0 format exactly.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 541.4175590551180903 Td
+(- Maintain PostgreSQL schema format exactly.) Tj
+ET
+BT
+/F1 14 Tf
+16.0999999999999979 TL
+0 g
+28.3464566929133888 521.5750393700786844 Td
+(Summary:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 496.0632283464566399 Td
+(You will always receive some text input from Agent 2.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 479.0553543307086102 Td
+(You...) Tj
+ET
+BT
+/F1 14 Tf
+16.0999999999999979 TL
+0 g
+28.3464566929133888 459.2128346456692611 Td
+(Raw Output:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 433.7010236220471597 Td
+(1. Architecture Standards:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 416.69314960629913 Td
+(- Use PlantUML for all UML diagrams \(sequence, class\).) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 399.6852755905511003 Td
+(- API specification must be OpenAPI 3.0 YAML compliant.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 382.6774015748030706 Td
+(- Database schema must be in PostgreSQL format with explicit datatypes and constraints.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 365.6695275590550409 Td
+(- Modular C++17 design with clear separation of SIP, fax, and application logic.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 348.6616535433070112 Td
+(- Resource management via RAII principles.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 331.6537795275589815 Td
+(- All protocol interactions are stubbed; no real network or telephony stack.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 314.6459055118109518 Td
+(- No authentication, encryption, or safety-critical features in stub/demo implementation.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 297.6380314960629221 Td
+(- Console output for workflow status and logs.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 280.6301574803148924 Td
+(- Error handling via boolean return values only.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 263.6222834645668627 Td
+(- Follow SOLID principles, especially Interface Segregation and minimum dependencies between modules.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 246.614409448818833 Td
+(- Use organization naming conventions for all classes, methods, and database objects.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 212.5986614173227736 Td
+(2. Entities:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 195.5907874015747439 Td
+(- MainApplication: Orchestrates the FOIP workflow, coordinates SIP and fax layers.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 178.5829133858267141 Td
+(- SIPSignalingStub: Simulates SIP call setup, teardown, and UDPTL transport.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 161.5750393700786844 Td
+(- FaxProtocolStub: Simulates T.30 fax session management and page encoding.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 144.5671653543306547 Td
+(- UDPTLTransportStub: Simulates T.38-encapsulated fax data transmission.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 127.559291338582625 Td
+(- WorkflowLogger: Outputs workflow status and logs to console.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 110.5514173228345953 Td
+(- InputData: Holds target phone number and sample page data.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 93.5435433070865656 Td
+(- WorkflowStatus: Tracks boolean status for call, transmission, hangup, and session.) Tj
 ET
 endstream
 endobj
@@ -3140,7 +3329,7 @@ endobj
 endobj
 28 0 obj
 <<
-/Length 3580
+/Length 4979
 >>
 stream
 0.5670000000000001 w
@@ -3149,239 +3338,302 @@ BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 796.5356692913385359 Td
-(You MUST output the same sections in same order.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 762.5199212598424765 Td
-(You MUST NOT:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 728.5041732283464171 Td
-('L   A d d   n e w   e n t i t i e s) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 711.4962992125983874 Td
-('L   A d d   n e w   f l o w s) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 694.4884251968503577 Td
-('L   A d d   n e w   A P I s) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 677.480551181102328 Td
-('L   M o d i f y   s y s t e m   b e h a v i o r) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 660.4726771653542983 Td
-('L   I n v e n t   n e w   f e a t u r e s) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 626.4569291338582389 Td
-(You are ONLY polishing and correcting.) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 592.4411811023621794 Td
-(You have access to the KnowledgeRAGTool. It is advised to use this tool when you have access to it irrespective of) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 575.4333070866141497 Td
-(whether a knowledge retrieval task has been assigned explicitly.) Tj
-ET
-BT
-/F1 14 Tf
-16.0999999999999979 TL
-0 g
-28.3464566929133888 555.5907874015747439 Td
-(Expected Output:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 530.0789763779526993 Td
-(1. Architecture Standards:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 513.0711023622046696 Td
-(\(Refined, cleaned, consistent\)) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 479.0553543307086102 Td
-(2. Entities:) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 462.0474803149605805 Td
-(- EntityName: clear, concise description) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 445.0396062992125508 Td
-(…) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 411.0238582677164914 Td
+42.5196850393700814 813.5435433070865656 Td
 (3. Flows:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 394.0159842519684616 Td
-(- Refine text, ensure clarity and correct numbering.) Tj
+42.5196850393700814 796.5356692913385359 Td
+(1. MainApplication receives target phone number and sample page data as input.) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 360.0002362204724022 Td
+42.5196850393700814 779.5277952755905062 Td
+(2. MainApplication invokes SIPSignalingStub to simulate SIP call establishment.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 762.5199212598424765 Td
+(3. On successful call setup, MainApplication invokes FaxProtocolStub to start T.30 fax session.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 745.5120472440944468 Td
+(4. FaxProtocolStub encodes the sample page data into T.30 frames.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 728.5041732283464171 Td
+(5. FaxProtocolStub passes encoded frames to UDPTLTransportStub for T.38 encapsulation and simulated) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 711.4962992125983874 Td
+(transmission.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 694.4884251968503577 Td
+(6. UDPTLTransportStub returns transmission status to MainApplication.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 677.480551181102328 Td
+(7. MainApplication instructs SIPSignalingStub to simulate call teardown.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(8. MainApplication collects all status booleans and logs workflow status via WorkflowLogger.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 643.4648031496062686 Td
+(9. MainApplication ensures all resources are cleaned up automatically \(RAII\).) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 609.4490551181102092 Td
 (4. API Specification \(OpenAPI 3.0 YAML\):) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 342.9923622047243725 Td
-(- Correct indentation) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 325.9844881889763428 Td
-(- Correct value types) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 308.9766141732283131 Td
-(- Validate YAML) Tj
-ET
-BT
-/F1 10 Tf
-11.5 TL
-0 g
-42.5196850393700814 291.9687401574802834 Td
+42.5196850393700814 592.4411811023621794 Td
 (openapi: 3.0.0) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 274.9608661417322537 Td
+42.5196850393700814 575.4333070866141497 Td
 (info:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 257.952992125984224 Td
-(  title: ...) Tj
+42.5196850393700814 558.42543307086612 Td
+(  title: FOIP Simulation API) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 240.9451181102361943 Td
-(  version: ...) Tj
+42.5196850393700814 541.4175590551180903 Td
+(  version: 1.0.0) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 223.9372440944881646 Td
+42.5196850393700814 524.4096850393700606 Td
 (paths:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 206.9293700787401349 Td
-(  ...) Tj
+42.5196850393700814 507.4018110236219741 Td
+(  /foip/sendFax:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 172.9136220472439618 Td
-(5. Sequence Diagram \(PlantUML\):) Tj
+42.5196850393700814 490.3939370078739444 Td
+(    post:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 155.9057480314959321 Td
-(@startuml) Tj
+42.5196850393700814 473.3860629921259147 Td
+(      summary: Simulate end-to-end FOIP fax transmission) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 138.8978740157479024 Td
-(...) Tj
+42.5196850393700814 456.378188976377885 Td
+(      requestBody:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 121.8899999999998727 Td
-(@enduml) Tj
+42.5196850393700814 439.3703149606298552 Td
+(        required: true) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 104.882125984251843 Td
-(Ensure:) Tj
+42.5196850393700814 422.3624409448818255 Td
+(        content:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 87.8742519685038133 Td
-(- Participant names consistent) Tj
+42.5196850393700814 405.3545669291337958 Td
+(          application/json:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 388.3466929133857661 Td
+(            schema:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 371.3388188976377364 Td
+(              $ref: '#/components/schemas/SendFaxRequest') Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 354.3309448818897067 Td
+(      responses:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 337.323070866141677 Td
+(        '200':) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 320.3151968503935905 Td
+(          description: Fax transmission simulation completed) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 303.3073228346455608 Td
+(          content:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 286.2994488188975311 Td
+(            application/json:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 269.2915748031495013 Td
+(              schema:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 252.2837007874014716 Td
+(                $ref: '#/components/schemas/SendFaxResponse') Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(        '400':) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 218.2679527559054122 Td
+(          description: Invalid input data) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 201.2600787401573825 Td
+(          content:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 184.2522047244093528 Td
+(            application/json:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 167.2443307086613231 Td
+(              schema:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 150.2364566929132934 Td
+(                $ref: '#/components/schemas/ErrorResponse') Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 133.2285826771652637 Td
+(        '500':) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 116.220708661417234 Td
+(          description: Internal simulation error) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 99.2128346456692043 Td
+(          content:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 82.2049606299211746 Td
+(            application/json:) Tj
 ET
 endstream
 endobj
@@ -3395,7 +3647,7 @@ endobj
 endobj
 30 0 obj
 <<
-/Length 3125
+/Length 4353
 >>
 stream
 0.5670000000000001 w
@@ -3405,213 +3657,1006 @@ BT
 11.5 TL
 0 g
 42.5196850393700814 813.5435433070865656 Td
-(- Arrow directions correct) Tj
+(              schema:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 796.5356692913385359 Td
-(- Flow meaningful) Tj
+(                $ref: '#/components/schemas/ErrorResponse') Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 779.5277952755905062 Td
+(components:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 762.5199212598424765 Td
-(6. Class Diagram \(PlantUML\):) Tj
+(  schemas:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 745.5120472440944468 Td
-(@startuml) Tj
+(    SendFaxRequest:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 728.5041732283464171 Td
-(...) Tj
+(      type: object) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 711.4962992125983874 Td
-(@enduml) Tj
+(      required:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 694.4884251968503577 Td
+(        - targetPhoneNumber) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 677.480551181102328 Td
-(7. Database Schema \(PostgreSQL\):) Tj
+(        - pageData) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 660.4726771653542983 Td
-(Ensure:) Tj
+(      properties:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 643.4648031496062686 Td
-(- Valid SQL) Tj
+(        targetPhoneNumber:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 626.4569291338582389 Td
-(- Constraints correct) Tj
+(          type: string) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 609.4490551181102092 Td
-(- Keys properly defined) Tj
+(          description: Target phone number for fax transmission) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 592.4411811023621794 Td
-(- CREATE TABLE ...) Tj
+(        pageData:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 575.4333070866141497 Td
+(          type: string) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 558.42543307086612 Td
-(8. Error Handling Strategy:) Tj
+(          format: byte) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 541.4175590551180903 Td
-(- Improve clarity, consistency, formatting.) Tj
+(          description: Raw page data \(base64-encoded\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 524.4096850393700606 Td
+(    SendFaxResponse:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 507.4018110236219741 Td
-(9. Configuration Parameters:) Tj
+(      type: object) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 490.3939370078739444 Td
-(- List structured parameters cleanly.) Tj
+(      properties:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 473.3860629921259147 Td
+(        callEstablished:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 456.378188976377885 Td
-(Ø=Ý7   R U L E S) Tj
+(          type: boolean) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 439.3703149606298552 Td
-(- DO NOT modify functional requirements.) Tj
+(        faxSessionStarted:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 422.3624409448818255 Td
-(- DO NOT invent new domain items.) Tj
+(          type: boolean) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 405.3545669291337958 Td
-(- Maintain exact section order.) Tj
+(        pageEncoded:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 388.3466929133857661 Td
-(- Maintain exact section titles.) Tj
+(          type: boolean) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 371.3388188976377364 Td
-(- Fix only quality, accuracy, formatting, and consistency.) Tj
+(        transmissionSuccess:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
 42.5196850393700814 354.3309448818897067 Td
-(- Output only the refined LLD, no explanations.) Tj
-ET
-BT
-/F1 14 Tf
-16.0999999999999979 TL
-0 g
-28.3464566929133888 334.4884251968503008 Td
-(Summary:) Tj
+(          type: boolean) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 308.9766141732283131 Td
-(You receive LLD from Agent 2 in a fixed structure:) Tj
+42.5196850393700814 337.323070866141677 Td
+(        callTeardown:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 274.9608661417322537 Td
-(Architecture...) Tj
-ET
-BT
-/F1 14 Tf
-16.0999999999999979 TL
-0 g
-28.3464566929133888 255.1183464566928478 Td
-(Raw Output:) Tj
+42.5196850393700814 320.3151968503935905 Td
+(          type: boolean) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 229.6065354330708033 Td
-(No LLD file was found in the provided directory. Please provide the LLD content in the required structure for review) Tj
+42.5196850393700814 303.3073228346455608 Td
+(        logs:) Tj
 ET
 BT
 /F1 10 Tf
 11.5 TL
 0 g
-42.5196850393700814 212.5986614173227736 Td
-(and refinement.) Tj
+42.5196850393700814 286.2994488188975311 Td
+(          type: array) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 269.2915748031495013 Td
+(          items:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 252.2837007874014716 Td
+(            type: string) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(    ErrorResponse:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 218.2679527559054122 Td
+(      type: object) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 201.2600787401573825 Td
+(      properties:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 184.2522047244093528 Td
+(        errorCode:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 167.2443307086613231 Td
+(          type: string) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 150.2364566929132934 Td
+(        errorMessage:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 133.2285826771652637 Td
+(          type: string) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 99.2128346456692043 Td
+(5. Sequence Diagram \(PlantUML\):) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 82.2049606299211746 Td
+(@startuml) Tj
+ET
+endstream
+endobj
+31 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 32 0 R
+>>
+endobj
+32 0 obj
+<<
+/Length 4919
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 813.5435433070865656 Td
+(actor User) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 796.5356692913385359 Td
+(participant MainApplication) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 779.5277952755905062 Td
+(participant SIPSignalingStub) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 762.5199212598424765 Td
+(participant FaxProtocolStub) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 745.5120472440944468 Td
+(participant UDPTLTransportStub) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 728.5041732283464171 Td
+(participant WorkflowLogger) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 694.4884251968503577 Td
+(User -> MainApplication: Provide targetPhoneNumber, pageData) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 677.480551181102328 Td
+(MainApplication -> SIPSignalingStub: establishCall\(targetPhoneNumber\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(SIPSignalingStub --> MainApplication: callEstablished \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 643.4648031496062686 Td
+(MainApplication -> FaxProtocolStub: startFaxSession\(pageData\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 626.4569291338582389 Td
+(FaxProtocolStub --> MainApplication: faxSessionStarted \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 609.4490551181102092 Td
+(FaxProtocolStub -> FaxProtocolStub: encodePageData\(\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 592.4411811023621794 Td
+(FaxProtocolStub --> MainApplication: pageEncoded \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 575.4333070866141497 Td
+(FaxProtocolStub -> UDPTLTransportStub: transmitT38\(encodedFrames\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 558.42543307086612 Td
+(UDPTLTransportStub --> FaxProtocolStub: transmissionSuccess \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 541.4175590551180903 Td
+(FaxProtocolStub --> MainApplication: transmissionSuccess \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 524.4096850393700606 Td
+(MainApplication -> SIPSignalingStub: teardownCall\(\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 507.4018110236219741 Td
+(SIPSignalingStub --> MainApplication: callTeardown \(bool\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 490.3939370078739444 Td
+(MainApplication -> WorkflowLogger: log\(status, logs\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 473.3860629921259147 Td
+(WorkflowLogger --> MainApplication: logComplete) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 456.378188976377885 Td
+(MainApplication -> User: return status/logs) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 439.3703149606298552 Td
+(@enduml) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 405.3545669291337958 Td
+(6. Class Diagram \(PlantUML\):) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 388.3466929133857661 Td
+(@startuml) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 371.3388188976377364 Td
+(class MainApplication {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 354.3309448818897067 Td
+(  +sendFax\(targetPhoneNumber: string, pageData: vector<byte>\): WorkflowStatus) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 337.323070866141677 Td
+(}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 320.3151968503935905 Td
+(class SIPSignalingStub {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 303.3073228346455608 Td
+(  +establishCall\(targetPhoneNumber: string\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 286.2994488188975311 Td
+(  +teardownCall\(\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 269.2915748031495013 Td
+(}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 252.2837007874014716 Td
+(class FaxProtocolStub {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(  +startFaxSession\(pageData: vector<byte>\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 218.2679527559054122 Td
+(  +encodePageData\(pageData: vector<byte>\): vector<byte>) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 201.2600787401573825 Td
+(  +transmitT38\(encodedFrames: vector<byte>\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 184.2522047244093528 Td
+(}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 167.2443307086613231 Td
+(class UDPTLTransportStub {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 150.2364566929132934 Td
+(  +transmitT38\(encodedFrames: vector<byte>\): bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 133.2285826771652637 Td
+(}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 116.220708661417234 Td
+(class WorkflowLogger {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 99.2128346456692043 Td
+(  +log\(status: WorkflowStatus, logs: vector<string>\): void) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 82.2049606299211746 Td
+(}) Tj
+ET
+endstream
+endobj
+33 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 34 0 R
+>>
+endobj
+34 0 obj
+<<
+/Length 4669
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 813.5435433070865656 Td
+(class InputData {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 796.5356692913385359 Td
+(  +targetPhoneNumber: string) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 779.5277952755905062 Td
+(  +pageData: vector<byte>) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 762.5199212598424765 Td
+(}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 745.5120472440944468 Td
+(class WorkflowStatus {) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 728.5041732283464171 Td
+(  +callEstablished: bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 711.4962992125983874 Td
+(  +faxSessionStarted: bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 694.4884251968503577 Td
+(  +pageEncoded: bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 677.480551181102328 Td
+(  +transmissionSuccess: bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(  +callTeardown: bool) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 643.4648031496062686 Td
+(  +logs: vector<string>) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 626.4569291338582389 Td
+(}) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 592.4411811023621794 Td
+(MainApplication --> SIPSignalingStub) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 575.4333070866141497 Td
+(MainApplication --> FaxProtocolStub) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 558.42543307086612 Td
+(FaxProtocolStub --> UDPTLTransportStub) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 541.4175590551180903 Td
+(MainApplication --> WorkflowLogger) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 524.4096850393700606 Td
+(MainApplication --> InputData) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 507.4018110236219741 Td
+(MainApplication --> WorkflowStatus) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 490.3939370078739444 Td
+(@enduml) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 456.378188976377885 Td
+(7. Database Schema \(PostgreSQL\):) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 422.3624409448818255 Td
+(CREATE TABLE foip_workflow_log \() Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 405.3545669291337958 Td
+(    id SERIAL PRIMARY KEY,) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 388.3466929133857661 Td
+(    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 371.3388188976377364 Td
+(    target_phone_number VARCHAR\(32\) NOT NULL,) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 354.3309448818897067 Td
+(    call_established BOOLEAN NOT NULL,) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 337.323070866141677 Td
+(    fax_session_started BOOLEAN NOT NULL,) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 320.3151968503935905 Td
+(    page_encoded BOOLEAN NOT NULL,) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 303.3073228346455608 Td
+(    transmission_success BOOLEAN NOT NULL,) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 286.2994488188975311 Td
+(    call_teardown BOOLEAN NOT NULL,) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 269.2915748031495013 Td
+(    logs TEXT[],) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 252.2837007874014716 Td
+(    status VARCHAR\(16\) NOT NULL CHECK \(status IN \('SUCCESS', 'FAILURE'\)\)) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 235.2758267716534419 Td
+(\);) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 201.2600787401573825 Td
+(8. Error Handling Strategy:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 184.2522047244093528 Td
+(- All module APIs return boolean status; false indicates failure at that stage.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 167.2443307086613231 Td
+(- MainApplication aggregates status booleans and logs error context.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 150.2364566929132934 Td
+(- API returns errorCode and errorMessage in case of input validation or internal errors.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 133.2285826771652637 Td
+(- No exceptions are thrown; all errors are handled via return values and logging.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 116.220708661417234 Td
+(- Input validation: targetPhoneNumber must be non-empty, pageData must be non-empty.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 99.2128346456692043 Td
+(- Resource cleanup is automatic via RAII; no explicit error recovery for resource leaks.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 82.2049606299211746 Td
+(- No authentication, encryption, or protocol compliance errors are handled in stub.) Tj
+ET
+endstream
+endobj
+35 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 36 0 R
+>>
+endobj
+36 0 obj
+<<
+/Length 1270
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 796.5356692913385359 Td
+(9. Configuration Parameters:) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 779.5277952755905062 Td
+(- Max page data size: 1 MB \(for demo, not enforced in stub\).) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 762.5199212598424765 Td
+(- Log output: Console only.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 745.5120472440944468 Td
+(- Supported protocol: T.30 over T.38 \(simulated\).) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 728.5041732283464171 Td
+(- Network simulation: IPv4 only.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 711.4962992125983874 Td
+( -   R A M   u s a g e :  "d   2 5 6   K B   \( e x p e c t e d ,   n o t   e n f o r c e d \) .) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 694.4884251968503577 Td
+(- No authentication or encryption.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 677.480551181102328 Td
+(- No real-time or latency constraints.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 660.4726771653542983 Td
+(- No hardware abstraction layer required.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0 g
+42.5196850393700814 643.4648031496062686 Td
+(- Demo only; not for production or regulated environments.) Tj
 ET
 endstream
 endobj
 1 0 obj
 <</Type /Pages
-/Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R ]
-/Count 14
+/Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R ]
+/Count 17
 >>
 endobj
-31 0 obj
+37 0 obj
 <<
 /Type /Font
 /BaseFont /Helvetica
@@ -3621,7 +4666,7 @@ endobj
 /LastChar 255
 >>
 endobj
-32 0 obj
+38 0 obj
 <<
 /Type /Font
 /BaseFont /Helvetica-Bold
@@ -3631,7 +4676,7 @@ endobj
 /LastChar 255
 >>
 endobj
-33 0 obj
+39 0 obj
 <<
 /Type /Font
 /BaseFont /Helvetica-Oblique
@@ -3641,7 +4686,7 @@ endobj
 /LastChar 255
 >>
 endobj
-34 0 obj
+40 0 obj
 <<
 /Type /Font
 /BaseFont /Helvetica-BoldOblique
@@ -3651,7 +4696,7 @@ endobj
 /LastChar 255
 >>
 endobj
-35 0 obj
+41 0 obj
 <<
 /Type /Font
 /BaseFont /Courier
@@ -3661,7 +4706,7 @@ endobj
 /LastChar 255
 >>
 endobj
-36 0 obj
+42 0 obj
 <<
 /Type /Font
 /BaseFont /Courier-Bold
@@ -3671,7 +4716,7 @@ endobj
 /LastChar 255
 >>
 endobj
-37 0 obj
+43 0 obj
 <<
 /Type /Font
 /BaseFont /Courier-Oblique
@@ -3681,7 +4726,7 @@ endobj
 /LastChar 255
 >>
 endobj
-38 0 obj
+44 0 obj
 <<
 /Type /Font
 /BaseFont /Courier-BoldOblique
@@ -3691,7 +4736,7 @@ endobj
 /LastChar 255
 >>
 endobj
-39 0 obj
+45 0 obj
 <<
 /Type /Font
 /BaseFont /Times-Roman
@@ -3701,7 +4746,7 @@ endobj
 /LastChar 255
 >>
 endobj
-40 0 obj
+46 0 obj
 <<
 /Type /Font
 /BaseFont /Times-Bold
@@ -3711,7 +4756,7 @@ endobj
 /LastChar 255
 >>
 endobj
-41 0 obj
+47 0 obj
 <<
 /Type /Font
 /BaseFont /Times-Italic
@@ -3721,7 +4766,7 @@ endobj
 /LastChar 255
 >>
 endobj
-42 0 obj
+48 0 obj
 <<
 /Type /Font
 /BaseFont /Times-BoldItalic
@@ -3731,7 +4776,7 @@ endobj
 /LastChar 255
 >>
 endobj
-43 0 obj
+49 0 obj
 <<
 /Type /Font
 /BaseFont /ZapfDingbats
@@ -3740,7 +4785,7 @@ endobj
 /LastChar 255
 >>
 endobj
-44 0 obj
+50 0 obj
 <<
 /Type /Font
 /BaseFont /Symbol
@@ -3753,32 +4798,32 @@ endobj
 <<
 /ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
 /Font <<
-/F1 31 0 R
-/F2 32 0 R
-/F3 33 0 R
-/F4 34 0 R
-/F5 35 0 R
-/F6 36 0 R
-/F7 37 0 R
-/F8 38 0 R
-/F9 39 0 R
-/F10 40 0 R
-/F11 41 0 R
-/F12 42 0 R
-/F13 43 0 R
-/F14 44 0 R
+/F1 37 0 R
+/F2 38 0 R
+/F3 39 0 R
+/F4 40 0 R
+/F5 41 0 R
+/F6 42 0 R
+/F7 43 0 R
+/F8 44 0 R
+/F9 45 0 R
+/F10 46 0 R
+/F11 47 0 R
+/F12 48 0 R
+/F13 49 0 R
+/F14 50 0 R
 >>
 /XObject <<
 >>
 >>
 endobj
-45 0 obj
+51 0 obj
 <<
 /Producer (jsPDF 3.0.1)
-/CreationDate (D:20251128152646+05'30')
+/CreationDate (D:20251128162817+05'30')
 >>
 endobj
-46 0 obj
+52 0 obj
 <<
 /Type /Catalog
 /Pages 1 0 R
@@ -3787,61 +4832,67 @@ endobj
 >>
 endobj
 xref
-0 47
+0 53
 0000000000 65535 f 
-0000057905 00000 n 
-0000059816 00000 n 
+0000076731 00000 n 
+0000078663 00000 n 
 0000000015 00000 n 
 0000000152 00000 n 
 0000004485 00000 n 
 0000004622 00000 n 
-0000009748 00000 n 
-0000009885 00000 n 
-0000014798 00000 n 
-0000014936 00000 n 
-0000018884 00000 n 
-0000019023 00000 n 
-0000022359 00000 n 
-0000022498 00000 n 
-0000027671 00000 n 
-0000027810 00000 n 
-0000032607 00000 n 
-0000032746 00000 n 
-0000037066 00000 n 
-0000037205 00000 n 
-0000041391 00000 n 
-0000041530 00000 n 
-0000045534 00000 n 
-0000045673 00000 n 
-0000048273 00000 n 
-0000048412 00000 n 
-0000050816 00000 n 
-0000050955 00000 n 
-0000054588 00000 n 
-0000054727 00000 n 
-0000058051 00000 n 
-0000058177 00000 n 
-0000058308 00000 n 
-0000058442 00000 n 
-0000058580 00000 n 
-0000058704 00000 n 
-0000058833 00000 n 
-0000058965 00000 n 
-0000059101 00000 n 
-0000059229 00000 n 
-0000059356 00000 n 
-0000059485 00000 n 
-0000059618 00000 n 
-0000059720 00000 n 
-0000060069 00000 n 
-0000060155 00000 n 
+0000009759 00000 n 
+0000009896 00000 n 
+0000014450 00000 n 
+0000014588 00000 n 
+0000018536 00000 n 
+0000018675 00000 n 
+0000022011 00000 n 
+0000022150 00000 n 
+0000027574 00000 n 
+0000027713 00000 n 
+0000032425 00000 n 
+0000032564 00000 n 
+0000037302 00000 n 
+0000037441 00000 n 
+0000041965 00000 n 
+0000042104 00000 n 
+0000046230 00000 n 
+0000046369 00000 n 
+0000050427 00000 n 
+0000050566 00000 n 
+0000055581 00000 n 
+0000055720 00000 n 
+0000060752 00000 n 
+0000060891 00000 n 
+0000065297 00000 n 
+0000065436 00000 n 
+0000070408 00000 n 
+0000070547 00000 n 
+0000075269 00000 n 
+0000075408 00000 n 
+0000076898 00000 n 
+0000077024 00000 n 
+0000077155 00000 n 
+0000077289 00000 n 
+0000077427 00000 n 
+0000077551 00000 n 
+0000077680 00000 n 
+0000077812 00000 n 
+0000077948 00000 n 
+0000078076 00000 n 
+0000078203 00000 n 
+0000078332 00000 n 
+0000078465 00000 n 
+0000078567 00000 n 
+0000078916 00000 n 
+0000079002 00000 n 
 trailer
 <<
-/Size 47
-/Root 46 0 R
-/Info 45 0 R
-/ID [ <013DA2594D5186C4F6C6E2DFA54952C7> <013DA2594D5186C4F6C6E2DFA54952C7> ]
+/Size 53
+/Root 52 0 R
+/Info 51 0 R
+/ID [ <351FE56D67CB8376B437853BCD58CD03> <351FE56D67CB8376B437853BCD58CD03> ]
 >>
 startxref
-60259
+79106
 %%EOF
