@@ -1,0 +1,101 @@
+# GitHub Actions workflow to build a CMake/C++ project and upload executables as artifacts
+# Triggers: push, pull_request, manual (workflow_dispatch)
+# Add this file at: .github/workflows/build.yml
+
+name: Build CMake project and upload executables
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    name: Build (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake ninja-build
+
+      - name: Configure CMake
+        run: |
+          mkdir -p build
+          cd build
+          cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release ..
+
+      - name: Build
+        run: |
+          cd build
+          cmake --build . --config Release --parallel
+
+      - name: Run tests (if any)
+        run: |
+          cd build
+          if command -v ctest >/dev/null 2>&1; then
+            ctest --output-on-failure || true
+          fi
+
+      - name: Collect executables into artifacts folder
+        # This finds executable files under build/ (POSIX executables) and copies them into artifacts/
+        run: |
+          rm -rf artifacts || true
+          mkdir -p artifacts
+          # Copy any files under build/ that appear executable
+          find build -type f -perm /111 -print0 | xargs -0 -I{} bash -c 'mkdir -p "artifacts/$(dirname "{}")"; cp --parents "{}" artifacts/ || true'
+          # Also copy common locations (in case executables are in build/bin)
+          if [ -d build/bin ]; then
+            cp -r build/bin artifacts/ || true
+          fi
+          echo "Artifacts content:"
+          find artifacts -maxdepth 3 -type f -ls || true
+
+      - name: Upload executables artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: executables
+          path: artifacts
+          retention-days: 7
+
+  # Optional: Add a Windows job if you need Windows binaries
+  build-windows:
+    name: Build (Windows)
+    runs-on: windows-latest
+    if: matrix.os == 'windows' || false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure and build with CMake (MSVC)
+        shell: powershell
+        run: |
+          mkdir build
+          cd build
+          cmake -S .. -B . -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release
+          cmake --build . --config Release
+
+      - name: Collect executables into artifacts folder (Windows)
+        shell: powershell
+        run: |
+          Remove-Item -Recurse -Force artifacts -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory artifacts | Out-Null
+          Get-ChildItem -Path build -Recurse -Include *.exe | ForEach-Object {
+            $dest = Join-Path artifacts $_.FullName.Substring($PWD.Path.Length).TrimStart('\')
+            New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
+            Copy-Item $_.FullName $dest
+          }
+          Get-ChildItem artifacts -Recurse | Select-Object FullName, Length
+
+      - name: Upload executables artifact (Windows)
+        uses: actions/upload-artifact@v4
+        with:
+          name: executables-windows
+          path: artifacts
+          retention-days: 7
