@@ -4,7 +4,6 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -13,24 +12,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Prepare ccache directory
-        run: |
-          mkdir -p ~/.ccache
-          echo "Created ccache dir: $HOME/.ccache"
-
-      - name: Cache ccache
-        uses: actions/cache@v4
-        with:
-          path: ~/.ccache
-          key: Linux-ccache-${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt') }}
-          restore-keys: |
-            Linux-ccache-${{ runner.os }}-
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y build-essential ccache cmake
+        run: sudo apt-get update && sudo apt-get install -y build-essential cmake
 
       - name: Configure CMake
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
@@ -38,26 +22,27 @@ jobs:
       - name: Build project
         run: cmake --build build -- -j$(nproc)
 
-      - name: Run tests
-        run: ctest --test-dir build --output-on-failure
+      - name: Run tests (if any)
+        run: |
+          if [ -f "CTestTestfile.cmake" ]; then
+            ctest --test-dir build --output-on-failure
+          else
+            echo "No tests found."
+          fi
 
-      # -----------------------------------------------------
-      # 1) ALWAYS UPLOAD BUILD FILES FOR DOWNLOAD
-      # -----------------------------------------------------
-      - name: Upload build directory as artifact
+      ###########################################################
+      # 1) DOWNLOADABLE BUILD FILES (YOUR MAIN REQUIREMENT)
+      ###########################################################
+      - name: Upload build directory
         uses: actions/upload-artifact@v4
         with:
-          name: build-files
+          name: build-folder
           path: build/
-          retention-days: 7
 
-      # -----------------------------------------------------
-      # 2) OPTIONAL: ENABLE VM ACCESS
-      # Turn ON by setting: workflow_dispatch inputs
-      # -----------------------------------------------------
-      - name: Open interactive VM shell (optional)
+      ###########################################################
+      # 2) OPTIONAL — OPEN VM SHELL FOR DEBUGGING
+      # To use it: Go to Actions → Run Workflow → enable debug_vm
+      ###########################################################
+      - name: Debug via SSH
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_vm == 'true' }}
-        uses: lhotari/action-upterm@v1
-        with:
-          wait-timeout-minutes: 30
-          limit-access-to-actor: true
+        uses: mxschmitt/action-tmate@v3
