@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -29,36 +29,35 @@ jobs:
           restore-keys: |
             Linux-ccache-${{ runner.os }}-
 
-      - name: Install required packages
+      - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y build-essential ccache cmake
 
-      - name: Configure (CMake)
+      - name: Configure CMake
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
-      - name: Build
+      - name: Build project
         run: cmake --build build -- -j$(nproc)
 
       - name: Run tests
         run: ctest --test-dir build --output-on-failure
 
-
-      # ===============================
-      # 1) Upload build files as artifacts (easy download)
-      # ===============================
-      - name: Upload build directory
+      # -----------------------------------------------------
+      # 1) ALWAYS UPLOAD BUILD FILES FOR DOWNLOAD
+      # -----------------------------------------------------
+      - name: Upload build directory as artifact
         uses: actions/upload-artifact@v4
         with:
           name: build-files
           path: build/
           retention-days: 7
 
-
-      # ===============================
-      # 2) OPTIONAL: Open SSH / Terminal into runner VM
-      # Uncomment if you want to explore the VM manually
-      # ===============================
-      # - name: Open SSH session
-      #   uses: lhotari/action-upterm@v1
-      #   with:
-      #     wait-timeout-minutes: 30
-      #     limit-access-to-actor: true
+      # -----------------------------------------------------
+      # 2) OPTIONAL: ENABLE VM ACCESS
+      # Turn ON by setting: workflow_dispatch inputs
+      # -----------------------------------------------------
+      - name: Open interactive VM shell (optional)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_vm == 'true' }}
+        uses: lhotari/action-upterm@v1
+        with:
+          wait-timeout-minutes: 30
+          limit-access-to-actor: true
