@@ -33,11 +33,32 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y build-essential ccache cmake
 
       - name: Configure (CMake)
-        run: |
-          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
         run: cmake --build build -- -j$(nproc)
 
       - name: Run tests
         run: ctest --test-dir build --output-on-failure
+
+
+      # ===============================
+      # 1) Upload build files as artifacts (easy download)
+      # ===============================
+      - name: Upload build directory
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: build/
+          retention-days: 7
+
+
+      # ===============================
+      # 2) OPTIONAL: Open SSH / Terminal into runner VM
+      # Uncomment if you want to explore the VM manually
+      # ===============================
+      # - name: Open SSH session
+      #   uses: lhotari/action-upterm@v1
+      #   with:
+      #     wait-timeout-minutes: 30
+      #     limit-access-to-actor: true
