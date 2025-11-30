@@ -1,10 +1,5 @@
 name: C/C++ CI
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -13,55 +8,31 @@ jobs:
       CC: gcc
       CXX: g++
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Restore ccache
-      uses: actions/cache@v4
-      with:
-        path: ~/.ccache
-        key: ${{ runner.os }}-ccache-${{ hashFiles('**/Makefile', '**/*.c', '**/*.cpp') }}
-        restore-keys: |
-          ${{ runner.os }}-ccache-
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake ccache
 
-    - name: Install build dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential autoconf automake libtool pkg-config cmake ccache
+      - name: Restore ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt') }}
+          restore-keys: ${{ runner.os }}-ccache-
 
-    - name: Ensure configure is executable
-      run: |
-        if [ -f ./configure ]; then
-          chmod +x ./configure || true
-        fi
+      - name: Configure (CMake)
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
-    - name: Configure
-      run: |
-        if [ -f ./configure ]; then
-          ./configure
-        else
-          echo "No configure script found; skipping configure step."
-        fi
+      - name: Build
+        run: cmake --build build -- -j$(nproc)
 
-    - name: Build
-      run: |
-        if [ -f Makefile ]; then
-          make -j$(nproc)
-        else
-          echo "No Makefile found; skipping make."
-        fi
-
-    - name: Test
-      run: |
-        if make -q check 2>/dev/null || [ -f Makefile ]; then
-          make check || true
-        else
-          echo "No tests found or make check failed."
-        fi
-
-    - name: Distcheck
-      run: |
-        if [ -f Makefile ]; then
-          make distcheck || true
-        else
-          echo "No Makefile found; skipping distcheck."
-        fi
+      - name: Run tests (ctest)
+        run: |
+          if [ -f build/CTestTestfile.cmake ]; then
+            ctest --test-dir build --output-on-failure
+          else
+            echo "No tests found or build/CTestTestfile.cmake missing"
+          fi
