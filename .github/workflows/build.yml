@@ -1,17 +1,17 @@
-# .github/workflows/build.yml
-name: Build CMake project and upload artifacts
+name: Build CMake libraries (Linux + Windows)
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [ main, master ]
   pull_request:
   workflow_dispatch:
 
+env:
+  BUILD_TYPE: Release
+
 jobs:
   build-linux:
-    name: Build (Ubuntu 24.04)
+    name: Build (Linux - Ubuntu 24.04)
     runs-on: ubuntu-24.04
 
     steps:
@@ -20,59 +20,45 @@ jobs:
 
       - name: Install build tools
         run: |
-          set -x
-          sudo DEBIAN_FRONTEND=noninteractive apt-get update
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+          sudo apt-get update
+          sudo apt-get install -y \
             build-essential cmake ninja-build ccache autoconf automake libtool pkg-config
-
-      - name: Verify build tools
-        run: |
-          gcc --version
-          g++ --version
-          cmake --version
-          ninja --version
 
       - name: Configure CMake
         run: |
           mkdir -p build
           cd build
-          cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release ..
+          cmake -G Ninja -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} ..
 
       - name: Build
         run: |
           cd build
-          cmake --build . --config Release --parallel
+          cmake --build . --parallel
 
-      - name: Run tests (if any)
+      - name: Organize artifacts
         run: |
-          cd build
-          if command -v ctest >/dev/null 2>&1; then
-            ctest --output-on-failure || true
-          fi
+          mkdir -p artifacts/linux/so
+          mkdir -p artifacts/linux/a
+          mkdir -p artifacts/linux/bin
 
-      - name: Collect libraries & executables into artifacts
-        run: |
-          rm -rf artifacts || true
-          mkdir -p artifacts
+          echo "Copying .so files..."
+          find build -name "*.so" -exec cp {} artifacts/linux/so/ \;
 
-          echo "Copying shared libraries (.so)"
-          find build -name "*.so" -print0 | xargs -0 -I{} cp "{}" artifacts/ || true
+          echo "Copying .a files..."
+          find build -name "*.a" -exec cp {} artifacts/linux/a/ \;
 
-          echo "Copying static libraries (.a)"
-          find build -name "*.a" -print0 | xargs -0 -I{} cp "{}" artifacts/ || true
+          echo "Copying executables..."
+          find build -type f -perm /111 -exec cp {} artifacts/linux/bin/ \; || true
 
-          echo "Copying executables"
-          find build -type f -perm /111 -print0 | xargs -0 cp -t artifacts/ || true
+          echo "Artifacts prepared:"
+          find artifacts -type f
 
-          echo "=== Final artifacts list ==="
-          ls -lah artifacts/
-
-      - name: Upload Linux artifacts
+      - name: Upload Linux artifact
         uses: actions/upload-artifact@v4
         with:
-          name: linux-libs-and-executables
-          path: artifacts
-          retention-days: 7
+          name: foip_direct_demo-linux
+          path: artifacts/linux
+          retention-days: 14
 
   build-windows:
     name: Build (Windows)
@@ -82,41 +68,39 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Configure and build with CMake (MSVC)
+      - name: Configure CMake
         shell: powershell
         run: |
           mkdir build
           cd build
-          cmake -S .. -B . -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release
-          cmake --build . --config Release
+          cmake -S .. -B . `
+            -G "Visual Studio 17 2022" `
+            -A x64 `
+            -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
 
-      - name: Collect libraries & executables (Windows)
+      - name: Build
         shell: powershell
         run: |
-          Remove-Item -Recurse -Force artifacts -ErrorAction SilentlyContinue
-          New-Item -ItemType Directory artifacts | Out-Null
+          cd build
+          cmake --build . --config $env:BUILD_TYPE
 
-          # Copy DLLs
-          Get-ChildItem -Path build -Recurse -Include *.dll | ForEach-Object {
-            Copy-Item $_.FullName artifacts/
-          }
+      - name: Organize Windows artifacts
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory artifacts/windows/dll -Force | Out-Null
+          New-Item -ItemType Directory artifacts/windows/lib -Force | Out-Null
+          New-Item -ItemType Directory artifacts/windows/exe -Force | Out-Null
 
-          # Copy LIB files (import + static)
-          Get-ChildItem -Path build -Recurse -Include *.lib | ForEach-Object {
-            Copy-Item $_.FullName artifacts/
-          }
+          Get-ChildItem build -Recurse -Include *.dll | Copy-Item -Destination artifacts/windows/dll
+          Get-ChildItem build -Recurse -Include *.lib | Copy-Item -Destination artifacts/windows/lib
+          Get-ChildItem build -Recurse -Include *.exe | Copy-Item -Destination artifacts/windows/exe
 
-          # Copy executables
-          Get-ChildItem -Path build -Recurse -Include *.exe | ForEach-Object {
-            Copy-Item $_.FullName artifacts/
-          }
+          Write-Host "Artifacts prepared:"
+          Get-ChildItem artifacts -Recurse
 
-          Write-Host "=== Windows artifacts list ==="
-          Get-ChildItem artifacts -Recurse | Select-Object FullName, Length
-
-      - name: Upload Windows artifacts
+      - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows-libs-and-executables
-          path: artifacts
-          retention-days: 7
+          name: foip_direct_demo-windows
+          path: artifacts/windows
+          retention-days: 14
