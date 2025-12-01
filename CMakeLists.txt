@@ -14,15 +14,30 @@ set(SOURCES
     src/spandsp_stub.cpp
 )
 
-# Create a shared library (.so)
+# ---------------------------------------------------------
+# Build shared library (.so on Linux, .dll on Windows)
+# ---------------------------------------------------------
 add_library(foip_direct_demo SHARED ${SOURCES})
-
-# Optional: specify library version
 set_target_properties(foip_direct_demo PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION 1
 )
 
-# If your code has a main.cpp and you do NOT want an exe, comment it out:
+# ---------------------------------------------------------
+# Build static library (.a on Linux, .lib on Windows)
+# ---------------------------------------------------------
+add_library(foip_direct_demo_static STATIC ${SOURCES})
+
+# Give static lib same name as shared lib (but different extension)
+# This produces:
+#   libfoip_direct_demo.a       (Linux)
+#   foip_direct_demo.lib        (Windows)
+set_target_properties(foip_direct_demo_static PROPERTIES
+    OUTPUT_NAME foip_direct_demo
+)
+
+# ---------------------------------------------------------
+# Optional executable (uncomment if needed)
+# ---------------------------------------------------------
 # add_executable(foip_demo_app src/main.cpp)
 # target_link_libraries(foip_demo_app PRIVATE foip_direct_demo)
