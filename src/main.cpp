@@ -39,5 +39,7 @@ int main() {
 
     std::cout << "=== FAX SEND COMPLETE ===\n";
 
+    // End of the program
+
     return 0;
 }
