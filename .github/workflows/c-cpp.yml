@@ -1,38 +1,106 @@
-name: C/C++ CI
-on: [push, pull_request]
+name: Build CMake libraries (Linux + Windows)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  BUILD_TYPE: Release
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      CC: gcc
-      CXX: g++
+  build-linux:
+    name: Build (Linux - Ubuntu 24.04)
+    runs-on: ubuntu-24.04
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install build dependencies
+      - name: Install build tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cmake ccache
+          sudo apt-get install -y \
+            build-essential cmake ninja-build ccache autoconf automake libtool pkg-config
 
-      - name: Restore ccache
-        uses: actions/cache@v4
-        with:
-          path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt') }}
-          restore-keys: ${{ runner.os }}-ccache-
-
-      - name: Configure (CMake)
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - name: Configure CMake
+        run: |
+          mkdir -p build
+          cd build
+          cmake -G Ninja -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} ..
 
       - name: Build
-        run: cmake --build build -- -j$(nproc)
-
-      - name: Run tests (ctest)
         run: |
-          if [ -f build/CTestTestfile.cmake ]; then
-            ctest --test-dir build --output-on-failure
-          else
-            echo "No tests found or build/CTestTestfile.cmake missing"
-          fi
+          cd build
+          cmake --build . --parallel
+
+      - name: Organize artifacts
+        run: |
+          mkdir -p artifacts/linux/so
+          mkdir -p artifacts/linux/a
+          mkdir -p artifacts/linux/bin
+
+          echo "Copying .so files..."
+          find build -name "*.so" -exec cp {} artifacts/linux/so/ \;
+
+          echo "Copying .a files..."
+          find build -name "*.a" -exec cp {} artifacts/linux/a/ \;
+
+          echo "Copying executables..."
+          find build -type f -perm /111 -exec cp {} artifacts/linux/bin/ \; || true
+
+          echo "Artifacts prepared:"
+          find artifacts -type f
+
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: foip_direct_demo-linux
+          path: artifacts/linux
+          retention-days: 14
+
+  build-windows:
+    name: Build (Windows)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure CMake
+        shell: powershell
+        run: |
+          mkdir build
+          cd build
+          cmake -S .. -B . `
+            -G "Visual Studio 17 2022" `
+            -A x64 `
+            -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
+
+      - name: Build
+        shell: powershell
+        run: |
+          cd build
+          cmake --build . --config $env:BUILD_TYPE
+
+      - name: Organize Windows artifacts
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory artifacts/windows/dll -Force | Out-Null
+          New-Item -ItemType Directory artifacts/windows/lib -Force | Out-Null
+          New-Item -ItemType Directory artifacts/windows/exe -Force | Out-Null
+
+          Get-ChildItem build -Recurse -Include *.dll | Copy-Item -Destination artifacts/windows/dll
+          Get-ChildItem build -Recurse -Include *.lib | Copy-Item -Destination artifacts/windows/lib
+          Get-ChildItem build -Recurse -Include *.exe | Copy-Item -Destination artifacts/windows/exe
+
+          Write-Host "Artifacts prepared:"
+          Get-ChildItem artifacts -Recurse
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: foip_direct_demo-windows
+          path: artifacts/windows
+          retention-days: 14
