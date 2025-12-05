@@ -1,38 +1,52 @@
-#include "../include/logger.h"
+#include "logger.h"
+#include <iostream>
+#include <chrono>
 #include <iomanip>
-#include <sstream>
 
 // Global metrics storage
-static FoipMetrics g_metrics = {0, 0, 0};
-static std::chrono::steady_clock::time_point g_session_start;
-static std::chrono::steady_clock::time_point g_session_end;
-static bool g_session_active = false;
+static FoipMetrics g_metrics = {0, 0, 0, 0, 0};
 
-// Logging implementation
-void log_debug(const std::string& module, const std::string& msg) {
-    std::cout << "[DEBUG] [" << module << "] " << msg << std::endl;
+// Helper function to get current timestamp
+static uint64_t get_current_timestamp() {
+    auto now = std::chrono::steady_clock::now();
+    auto duration = now.time_since_epoch();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 }
 
-void log_info(const std::string& module, const std::string& msg) {
-    std::cout << "[INFO] [" << module << "] " << msg << std::endl;
+// Helper function to format log message
+static void log_message(const std::string& level, const std::string& module, const std::string& msg) {
+    auto now = std::chrono::system_clock::now();
+    auto time_t = std::chrono::system_clock::to_time_t(now);
+    
+    std::cout << "[" << level << "] [" << module << "] " << msg << std::endl;
 }
 
-void log_warn(const std::string& module, const std::string& msg) {
-    std::cout << "[WARN] [" << module << "] " << msg << std::endl;
+void init_logger() {
+    // Initialize logging system
+    g_metrics = {0, 0, 0, 0, 0};
 }
 
-void log_error(const std::string& module, const std::string& msg) {
-    std::cout << "[ERROR] [" << module << "] " << msg << std::endl;
+void log_debug(const std::string& msg) {
+    log_message("DEBUG", "APP", msg);
 }
 
-// Metrics implementation
+void log_info(const std::string& msg) {
+    log_message("INFO", "APP", msg);
+}
+
+void log_warn(const std::string& msg) {
+    log_message("WARN", "APP", msg);
+}
+
+void log_error(const std::string& msg) {
+    log_message("ERROR", "APP", msg);
+    record_error();
+}
+
 void record_frame(size_t frameSize) {
     g_metrics.totalFrames++;
     g_metrics.totalBytes += frameSize;
-    
-    std::stringstream ss;
-    ss << "Recorded frame: " << frameSize << " bytes";
-    log_debug("Metrics", ss.str());
+    log_message("DEBUG", "Metrics", "Recorded frame: " + std::to_string(frameSize) + " bytes");
 }
 
 void record_error() {
@@ -43,28 +57,23 @@ FoipMetrics get_foip_metrics() {
     return g_metrics;
 }
 
-void reset_metrics() {
-    g_metrics = {0, 0, 0};
+void start_session() {
+    g_metrics.sessionStartTimestamp = get_current_timestamp();
+    log_message("INFO", "APP", "FOIP session started");
 }
 
-// Session timing implementation
-void start_session_timer() {
-    g_session_start = std::chrono::steady_clock::now();
-    g_session_active = true;
+void end_session() {
+    g_metrics.sessionEndTimestamp = get_current_timestamp();
+    log_message("INFO", "APP", "FOIP session ended");
 }
 
-void end_session_timer() {
-    if (g_session_active) {
-        g_session_end = std::chrono::steady_clock::now();
-        g_session_active = false;
-    }
-}
-
-uint64_t get_session_duration_ms() {
-    if (g_session_active) {
-        auto now = std::chrono::steady_clock::now();
-        return std::chrono::duration_cast<std::chrono::milliseconds>(now - g_session_start).count();
-    } else {
-        return std::chrono::duration_cast<std::chrono::milliseconds>(g_session_end - g_session_start).count();
-    }
+void print_session_metrics() {
+    uint64_t duration = g_metrics.sessionEndTimestamp - g_metrics.sessionStartTimestamp;
+    
+    std::cout << "\n=== FOIP SESSION METRICS ===" << std::endl;
+    std::cout << "Frames Sent: " << g_metrics.totalFrames << std::endl;
+    std::cout << "Total Bytes: " << g_metrics.totalBytes << std::endl;
+    std::cout << "Errors: " << g_metrics.errors << std::endl;
+    std::cout << "Session Duration: " << duration << " ms" << std::endl;
+    std::cout << "=== END ===" << std::endl;
 }
