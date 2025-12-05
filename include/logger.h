@@ -2,9 +2,10 @@
 #define LOGGER_H
 
 #include <string>
+#include <cstdint>
 #include <chrono>
-#include <iostream>
 
+// Log levels
 enum class LogLevel {
     DEBUG,
     INFO,
@@ -12,6 +13,7 @@ enum class LogLevel {
     ERROR
 };
 
+// FOIP session metrics structure
 struct FoipMetrics {
     size_t totalFrames;
     size_t totalBytes;
@@ -19,35 +21,18 @@ struct FoipMetrics {
     uint64_t sessionDurationMs;
 };
 
-struct SipMetrics {
-    size_t packetsSent;
-    size_t bytesSent;
-    uint64_t sessionDurationMs;
-};
+// Logging API
+void log_debug(const std::string& msg);
+void log_info(const std::string& msg);
+void log_warn(const std::string& msg);
+void log_error(const std::string& msg);
 
-class Logger {
-private:
-    static FoipMetrics metrics;
-    static std::chrono::steady_clock::time_point sessionStart;
-    static bool sessionStarted;
-
-public:
-    static void log_debug(const std::string& msg);
-    static void log_info(const std::string& msg);
-    static void log_warn(const std::string& msg);
-    static void log_error(const std::string& msg);
-    
-    static void record_frame(size_t frameSize);
-    static void record_error();
-    static FoipMetrics get_foip_metrics();
-    
-    static void start_session();
-    static void end_session();
-    static void print_session_summary();
-
-private:
-    static void log(LogLevel level, const std::string& msg);
-    static std::string level_to_string(LogLevel level);
-};
+// Metrics API
+void record_frame(size_t frameSize);
+void record_error();
+FoipMetrics get_foip_metrics();
+void reset_metrics();
+void start_session_timer();
+void stop_session_timer();
 
 #endif
