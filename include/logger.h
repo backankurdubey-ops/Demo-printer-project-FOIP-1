@@ -2,37 +2,50 @@
 #define LOGGER_H
 
 #include <string>
-#include <iostream>
-#include <chrono>
+#include <cstddef>
+#include <cstdint>
 
-// Logging API
-void log_debug(const std::string& module, const std::string& msg);
-void log_info(const std::string& module, const std::string& msg);
-void log_warn(const std::string& module, const std::string& msg);
-void log_error(const std::string& module, const std::string& msg);
+// Log levels
+enum class LogLevel {
+    DEBUG,
+    INFO,
+    WARN,
+    ERROR
+};
 
-// Metrics structures
+// FOIP Metrics structure
 struct FoipMetrics {
     size_t totalFrames;
     size_t totalBytes;
     size_t errors;
+    uint64_t sessionStartTimestamp;
+    uint64_t sessionEndTimestamp;
 };
 
+// SIP Metrics structure
 struct SipMetrics {
     size_t packetsSent;
     size_t bytesSent;
     uint64_t sessionDurationMs;
 };
 
+// Logging API
+void log_debug(const std::string& msg);
+void log_info(const std::string& msg);
+void log_warn(const std::string& msg);
+void log_error(const std::string& msg);
+
 // Metrics API
 void record_frame(size_t frameSize);
 void record_error();
 FoipMetrics get_foip_metrics();
-void reset_metrics();
+void start_session();
+void end_session();
 
-// Session timing
-void start_session_timer();
-void end_session_timer();
-uint64_t get_session_duration_ms();
+// Session metrics report
+void print_session_metrics();
 
-#endif // LOGGER_H
+// Initialize logging system
+void init_logger();
+
+#endif
