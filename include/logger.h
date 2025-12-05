@@ -2,10 +2,9 @@
 #define LOGGER_H
 
 #include <string>
-#include <cstdint>
-#include <cstddef>
+#include <chrono>
+#include <iostream>
 
-// Log levels
 enum class LogLevel {
     DEBUG,
     INFO,
@@ -13,7 +12,6 @@ enum class LogLevel {
     ERROR
 };
 
-// FOIP Metrics structure
 struct FoipMetrics {
     size_t totalFrames;
     size_t totalBytes;
@@ -21,30 +19,35 @@ struct FoipMetrics {
     uint64_t sessionDurationMs;
 };
 
-// Logging API
-void log_debug(const std::string& msg);
-void log_info(const std::string& msg);
-void log_warn(const std::string& msg);
-void log_error(const std::string& msg);
+struct SipMetrics {
+    size_t packetsSent;
+    size_t bytesSent;
+    uint64_t sessionDurationMs;
+};
 
-// Module-specific logging
-void log_debug_module(const std::string& module, const std::string& msg);
-void log_info_module(const std::string& module, const std::string& msg);
-void log_warn_module(const std::string& module, const std::string& msg);
-void log_error_module(const std::string& module, const std::string& msg);
+class Logger {
+private:
+    static FoipMetrics metrics;
+    static std::chrono::steady_clock::time_point sessionStart;
+    static bool sessionStarted;
 
-// Metrics API
-void record_frame(size_t frameSize);
-void record_error();
-void reset_metrics();
-FoipMetrics get_foip_metrics();
+public:
+    static void log_debug(const std::string& msg);
+    static void log_info(const std::string& msg);
+    static void log_warn(const std::string& msg);
+    static void log_error(const std::string& msg);
+    
+    static void record_frame(size_t frameSize);
+    static void record_error();
+    static FoipMetrics get_foip_metrics();
+    
+    static void start_session();
+    static void end_session();
+    static void print_session_summary();
 
-// Session timing
-void start_session_timer();
-void end_session_timer();
+private:
+    static void log(LogLevel level, const std::string& msg);
+    static std::string level_to_string(LogLevel level);
+};
 
-// Initialize/cleanup
-void init_logger();
-void cleanup_logger();
-
-#endif // LOGGER_H
+#endif
