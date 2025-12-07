@@ -2,7 +2,7 @@ name: Build CMake libraries (Linux + Windows)
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, dev_branch ]
   pull_request:
   workflow_dispatch:
 
